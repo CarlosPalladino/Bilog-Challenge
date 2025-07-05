@@ -9,7 +9,7 @@ namespace Application.Interfaces
 
         Task CreateEspecialidad(EspecialidadRequest request);
 
-        Task<EspecialidadRequest> ActualizarEspecialidad();
+        Task ActualizarEspecialidad(EspecialidadUpdateRequest requestUpdate, int id);
 
         Task EliminarEspecialida(int id);
     }

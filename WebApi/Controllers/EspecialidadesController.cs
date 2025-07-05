@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("especialidades")]
     [ApiController]
     public class EspecialidadesController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Endpoint que retorna la listsa de especialidades
+        /// Endpoint que retorna la lista de especialidades
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -27,32 +27,40 @@ namespace WebApi.Controllers
             return listaEspecialidades.Any() ? Ok(listaEspecialidades) : NotFound();
         }
 
-        // GET api/<EspecialidadesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST api/<EspecialidadesController>
+        /// <summary>
+        /// Endpoint que genera una nueva especialidad
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> NuevaEspecialidad([FromBody] EspecialidadRequest request)
         {
             await _service.CreateEspecialidad(request);
-
             return Ok("Nueva especialidad creada");
         }
 
-        // PUT api/<EspecialidadesController>/5
+        /// <summary>
+        /// enpoint que permite actualizar la descripcion de la especialidad
+        /// </summary>
+        /// <param name="updateRequest"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> ActualizarEspecialidad([FromBody] EspecialidadUpdateRequest updateRequest, int id)
         {
+            await _service.ActualizarEspecialidad(updateRequest, id);
+            return Ok("la especialidad se ha actualizado");
         }
-
-        // DELETE api/<EspecialidadesController>/5
+        /// <summary>
+        /// endpoit que permite eliminar una especialidad 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> EliminarEspecialidad(int id)
         {
+            await _service.EliminarEspecialida(id);
+            return Ok("la especialidad fue eliminada exitosamente");
         }
     }
 }

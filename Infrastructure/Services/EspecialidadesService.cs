@@ -18,9 +18,18 @@ namespace Infrastructure.Services
             _mapper = mapper;
         }
 
-        public Task<EspecialidadRequest> ActualizarEspecialidad()
+        public async Task ActualizarEspecialidad(EspecialidadUpdateRequest updateRequest, int id)
         {
-            throw new NotImplementedException();
+            var especialidadActual = await _context.Especialidades
+                                                 .FindAsync(id);
+            if (especialidadActual is null)
+                throw new Exception("Especialidad no encontrada");
+
+            _context.Entry(especialidadActual).OriginalValues["rowversion"] = Convert.FromBase64String(updateRequest.RowVersion);
+            _mapper.Map(updateRequest, especialidadActual);
+
+            _context.Update(especialidadActual);
+            _context.SaveChanges();
         }
 
         public async Task CreateEspecialidad(EspecialidadRequest request)
@@ -30,9 +39,12 @@ namespace Infrastructure.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task EliminarEspecialida(int id)
+        public async Task EliminarEspecialida(int id)
         {
-            throw new NotImplementedException();
+            var especialidadEncontrada = await _context.Especialidades
+                                                 .FindAsync(id);
+            _context.Remove(especialidadEncontrada);
+            _context.SaveChanges();
         }
 
         public async Task<List<EspecialidaResponse>> ListaEspecialidades()
