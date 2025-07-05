@@ -4,6 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <AssemblyName>bilog-challenge</AssemblyName>
+	  <RootNamespace>bilog-challenge</RootNamespace>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  <NoWarn>1591</NoWarn>
   </PropertyGroup>
