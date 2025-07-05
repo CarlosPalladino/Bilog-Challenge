@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.Interfaces;
+using Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Configuration
 {
@@ -12,6 +14,7 @@ namespace Infrastructure.Persistence.Configuration
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(applicationOptions.ConnectionString));
 
+            services.AddScoped<IEspecialidadInterface, EspecialidadesService>();
             return services;
 
         }
