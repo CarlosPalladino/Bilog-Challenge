@@ -1,27 +1,68 @@
-# BilogChallenge
-## 🩺 Gestión de Especialidades – WebAPI (.NET 8)
+# 🩺 Bilog Challenge – Gestión de Especialidades Médicas
 
-Este proyecto es parte de un desafío técnico que consiste en desarrollar una API REST para gestionar especialidades médicas. Se implementan principios de Clean Architecture, validaciones de entrada, control de concurrencia con `rowVersion`, documentación interactiva y configuración segura mediante User Secrets.
-
----
-
-## 🛠 Tecnologías
-
-- ASP.NET Core 8
-- Entity Framework Core
-- SQL Server
-- AutoMapper
-- Swagger (Swashbuckle)
-- Postman
-- Middlewares personalizados
-- User Secrets
+Este proyecto es parte de un desafío técnico propuesto por Bilog. Consiste en desarrollar una API RESTful robusta para gestionar especialidades médicas, con foco en mantener la integridad de datos, buenas prácticas arquitectónicas y manejo de concurrencia.
 
 ---
 
-## 🔐 Configuración segura
+## 🛠 Tecnologías utilizadas
 
-Usamos User Secrets para evitar exponer claves o contraseñas en el código fuente:
+- ASP.NET Core 8  
+- Entity Framework Core  
+- SQL Server  
+- AutoMapper  
+- Swagger (Swashbuckle)  
+- Middlewares personalizados  
+- FluentValidation  
+- User Secrets  
 
-```bash
-dotnet user-secrets init
-dotnet user-secrets set "Application:ConnectionString" "Server=...;Database=...;User Id=...;Password=...;"
+---
+
+## 📐 Arquitectura
+
+La solución está basada en principios de Clean Architecture, separando claramente las capas de:
+
+- Controladores (WebAPI)  
+- Servicios de aplicación  
+- Repositorios (acceso a datos)  
+- Entidades del dominio y DTOs  
+
+---
+
+## ▶️ Endpoints disponibles
+
+- GET /especialidades → Listar todas las especialidades  
+- POST /especialidades → Crear una nueva especialidad  
+- PUT /especialidades/{id} → Actualizar una especialidad existente  
+- DELETE /especialidades/{id} → Eliminar una especialidad  
+
+---
+
+## 🔒 Validaciones y reglas de negocio
+
+- `cod_especialidad` y `descripcion` deben ser únicos.  
+- Se implementa control de concurrencia optimista utilizando el campo `rowVersion`.  
+- Se retorna el código HTTP adecuado: 200, 201, 204, 400, 404, 409, etc.  
+- Se valida entrada con FluentValidation.  
+
+---
+
+# 🚀 Bilog Challenge – Postman Collection
+
+Esta colección de Postman permite probar funcionalmente los endpoints de la API.
+
+Enlace de descarga:  
+📄 [Bilog-Challenge.postman_collection.json](./Bilog-Challenge.postman_collection.json)
+
+---
+
+## 🔧 Requisitos para usar la colección
+
+- Tener Postman instalado  
+- Tener la API corriendo localmente (por defecto en: `https://localhost:7191`)  
+
+---
+
+## 🚀 Uso
+
+1. Importar el archivo JSON desde Postman.  
+2. Asegurarse de tener configurada la variable `base_url` como:  
