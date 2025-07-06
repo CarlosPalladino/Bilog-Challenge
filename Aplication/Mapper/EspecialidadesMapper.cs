@@ -11,7 +11,9 @@ namespace Application.Mapper
     {
         public EspecialidadesMapper()
         {
-            CreateMap<Especialidad, EspecialidaResponse>()
+            CreateMap<EspecialidadRequest, Especialidad>();
+
+            CreateMap<Especialidad, EspecialidadResponse>()
                 .ForMember(dest => dest.rowVersion, opt =>
                     opt.MapFrom(src => Convert.ToBase64String(src.rowversion)));
 

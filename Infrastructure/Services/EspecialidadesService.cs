@@ -23,7 +23,7 @@ namespace Infrastructure.Services
             var especialidadActual = await _context.Especialidades
                                                  .FindAsync(id);
             if (especialidadActual is null)
-                throw new Exception("Especialidad no encontrada");
+                throw new KeyNotFoundException($"no se encontró la especialidad: {id}");
 
             _context.Entry(especialidadActual).OriginalValues["rowversion"] = Convert.FromBase64String(updateRequest.RowVersion);
             _mapper.Map(updateRequest, especialidadActual);
@@ -32,9 +32,9 @@ namespace Infrastructure.Services
             _context.SaveChanges();
         }
 
-        public async Task CreateEspecialidad(EspecialidadRequest request)
+        public async Task CreateEspecialidad(EspecialidadRequest crearRequest)
         {
-            var especialidad = _mapper.Map<Especialidad>(request);
+            var especialidad = _mapper.Map<Especialidad>(crearRequest);
             _context.Add(especialidad);
             await _context.SaveChangesAsync();
         }
@@ -43,13 +43,15 @@ namespace Infrastructure.Services
         {
             var especialidadEncontrada = await _context.Especialidades
                                                  .FindAsync(id);
+            if (especialidadEncontrada is null)
+                throw new KeyNotFoundException($"no se encontró la especialidad: {id}");
             _context.Remove(especialidadEncontrada);
             _context.SaveChanges();
         }
 
-        public async Task<List<EspecialidaResponse>> ListaEspecialidades()
+        public async Task<List<EspecialidadResponse>> ListaEspecialidades()
         {
-            var lista = await _context.Especialidades.Select(e => new EspecialidaResponse
+            var lista = await _context.Especialidades.Select(e => new EspecialidadResponse
             {
                 cod_especialidad = e.cod_especialidad,
                 descripcion = e.descripcion,

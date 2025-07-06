@@ -1,6 +1,6 @@
 ﻿namespace Application.Dto.Response
 {
-    public class EspecialidaResponse
+    public class EspecialidadResponse
     {
         public string cod_especialidad { get; set; }
         public string descripcion { get; set; }

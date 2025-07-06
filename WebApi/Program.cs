@@ -12,7 +12,9 @@ builder.Services.AddSwaggerGen(c =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
 }
-); builder.Services.AddInfrastructure(builder.Configuration);
+);
+builder.Services.AddInfrastructure(builder.Configuration);
+
 builder.Services.AddAutoMapper(typeof(EspecialidadesMapper).Assembly);
 
 var app = builder.Build();
@@ -22,6 +24,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseRouting();
+app.UseMiddleware<EspecialidadMiddlewares>();
 
 app.UseHttpsRedirection();
 

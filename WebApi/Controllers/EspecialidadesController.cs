@@ -1,7 +1,7 @@
 ﻿using Application.Dto.Request;
+using Application.Dto.Response;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace WebApi.Controllers
 {
@@ -17,50 +17,51 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Endpoint que retorna la lista de especialidades
+        /// Lista todas las especialidades disponibles
         /// </summary>
-        /// <returns></returns>
+        [ProducesResponseType(typeof(List<EspecialidadResponse>), 200)]
         [HttpGet]
         public async Task<IActionResult> ListaEspecialidades()
         {
-            var listaEspecialidades = await _service.ListaEspecialidades();
-            return listaEspecialidades.Any() ? Ok(listaEspecialidades) : NotFound();
+            var lista = await _service.ListaEspecialidades();
+            return Ok(lista);
         }
 
-
         /// <summary>
-        /// Endpoint que genera una nueva especialidad
+        /// Crea una nueva especialidad
         /// </summary>
-        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 409)]
         [HttpPost]
         public async Task<IActionResult> NuevaEspecialidad([FromBody] EspecialidadRequest request)
         {
             await _service.CreateEspecialidad(request);
-            return Ok("Nueva especialidad creada");
+            return StatusCode(StatusCodes.Status201Created, "Especialidad creada exitosamente");
         }
 
         /// <summary>
-        /// enpoint que permite actualizar la descripcion de la especialidad
+        /// Actualiza la descripción de una especialidad
         /// </summary>
-        /// <param name="updateRequest"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 404)]
+        [ProducesResponseType(typeof(string), 409)]
         [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarEspecialidad([FromBody] EspecialidadUpdateRequest updateRequest, int id)
         {
             await _service.ActualizarEspecialidad(updateRequest, id);
-            return Ok("la especialidad se ha actualizado");
+            return Ok("La especialidad se ha actualizado");
         }
         /// <summary>
-        /// endpoit que permite eliminar una especialidad 
+        /// Elimina una especialidad por ID
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(string), 404)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> EliminarEspecialidad(int id)
         {
             await _service.EliminarEspecialida(id);
-            return Ok("la especialidad fue eliminada exitosamente");
+            return NoContent();
         }
     }
 }

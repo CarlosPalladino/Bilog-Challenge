@@ -8,6 +8,7 @@
 	  <RootNamespace>bilog-challenge</RootNamespace>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  <NoWarn>1591</NoWarn>
+	  <UserSecretsId>a18af939-997f-468d-84bb-9e4032c89c62</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

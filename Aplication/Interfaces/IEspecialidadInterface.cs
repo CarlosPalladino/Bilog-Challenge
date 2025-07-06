@@ -5,7 +5,7 @@ namespace Application.Interfaces
 {
     public interface IEspecialidadInterface
     {
-        Task<List<EspecialidaResponse>> ListaEspecialidades();
+        Task<List<EspecialidadResponse>> ListaEspecialidades();
 
         Task CreateEspecialidad(EspecialidadRequest request);
 
