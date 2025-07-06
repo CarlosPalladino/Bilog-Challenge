@@ -51,7 +51,7 @@ La solución está basada en principios de Clean Architecture, separando clarame
 Esta colección de Postman permite probar funcionalmente los endpoints de la API.
 
 Enlace de descarga:  
-📄 [Bilog-Challenge.postman_collection.json](.[/Bilog-Challenge.postman_collection.json](https://globant-enterprise-ai.postman.co/workspace/My-Workspace~b9fbbd6e-805c-4cb7-9c0d-726bc609e326/collection/24340576-95ac1702-734a-4eee-afe3-2341613ecada?action=share&creator=24340576))
+📄 [Bilog-Challenge.postman_collection.json](https://globant-enterprise-ai.postman.co/workspace/My-Workspace~b9fbbd6e-805c-4cb7-9c0d-726bc609e326/collection/24340576-95ac1702-734a-4eee-afe3-2341613ecada?action=share&creator=24340576)
 
 ---
 
