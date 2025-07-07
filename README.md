@@ -68,7 +68,7 @@ Enlace de descarga:
 | 🔒 JWT Authentication    | Proteger los endpoints y gestionar control de acceso a recursos sensibles     |
 | 💥 Retry Policies        | Reintentos ante errores transitorios de base de datos o servicios externos    |
 | 🧪 Entorno QA            | validar nuevos desarrollados aplicando test unitarios, integradores y E2E     |
-| 🔍 Health Checks         | Exponer endpoint `/health` para verificar disponibilidad en producción        |
+| 🔍 Soft Delete           | Generar una  columna ACTIVE la cual permitirá tener una lista actualizada     |
 
 
 
