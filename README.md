@@ -61,8 +61,14 @@ Enlace de descarga:
 - Tener la API corriendo localmente (por defecto en: `https://localhost:7191`)  
 
 ---
+## 🚀 Next steps for production-readiness
 
-## 🚀 Uso
+| Mejora                   | Justificación                                                                 |
+|--------------------------|-------------------------------------------------------------------------------- 
+| 🔒 JWT Authentication    | Proteger los endpoints y gestionar control de acceso a recursos sensibles     |
+| 💥 Retry Policies        | Reintentos ante errores transitorios de base de datos o servicios externos    |
+| 🧪 Entorno QA            | validar nuevos desarrollados aplicando test unitarios, integradores y E2E     |
+| 🔍 Health Checks         | Exponer endpoint `/health` para verificar disponibilidad en producción        |
 
-1. Importar el archivo JSON desde Postman.  
-2. Asegurarse de tener configurada la variable `base_url` como:  
+
+
