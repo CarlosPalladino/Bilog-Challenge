@@ -36,6 +36,8 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> NuevaEspecialidad([FromBody] EspecialidadRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             await _service.CreateEspecialidad(request);
             return StatusCode(StatusCodes.Status201Created, "Especialidad creada exitosamente");
         }
@@ -49,6 +51,9 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarEspecialidad([FromBody] EspecialidadUpdateRequest updateRequest, int id)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             await _service.ActualizarEspecialidad(updateRequest, id);
             return Ok("La especialidad se ha actualizado");
         }
