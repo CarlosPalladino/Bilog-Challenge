@@ -18,7 +18,7 @@ namespace EspecialidadesTest.CaminoNoFeliz.Crear
             _controller = new EspecialidadesController(_serviceMock.Object);
         }
         [Test]
-        public async Task CrearEspecialidad_WithEmptyDescripcion_ShouldReturn400()
+        public async Task CrearEspecialidad_ConDescripcionVacia_DeberiaDevolver400()
         {
             // Arrange
             var request = new EspecialidadRequest

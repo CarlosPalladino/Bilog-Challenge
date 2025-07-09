@@ -18,13 +18,13 @@ namespace EspecialidadesTest.CaminoFeliz.Crear
             _controller = new EspecialidadesController(_serviceMock.Object);
         }
         [Test]
-        public async Task NuevaEspecialidad_ShouldReturn201()
+        public async Task NuevaEspecialidad_DeberiaDevolver201()
         {
             // Arrange
             var request = new EspecialidadRequest
             {
-                cod_especialidad = "OD02",
-                descripcion = "Ortodoncia"
+                cod_especialidad = "03",
+                descripcion = "03"
             };
 
             _serviceMock.Setup(s => s.CreateEspecialidad(request)).Returns(Task.CompletedTask);

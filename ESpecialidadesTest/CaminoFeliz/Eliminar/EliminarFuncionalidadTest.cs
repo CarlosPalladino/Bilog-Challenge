@@ -20,17 +20,17 @@ namespace EspecialidadesTest.CaminoFeliz.Eliminar
         }
 
         [Test]
-        public async Task EliminarEspecialidad_ShouldReturn204_WhenSuccessful()
+        public async Task EliminarEspecialidad_DeberiaDevolver204_CuandoEsExitosa()
         {
             // Arrange
-            var id = 3054;
+            var id_especialidad = 3054;
 
             _serviceMock
-                .Setup(s => s.EliminarEspecialida(id))
+                .Setup(s => s.EliminarEspecialida(id_especialidad))
                 .Returns(Task.CompletedTask);
 
             // Act
-            var result = await _controller.EliminarEspecialidad(id);
+            var result = await _controller.EliminarEspecialidad(id_especialidad);
 
             // Assert
             var noContentResult = result as NoContentResult;

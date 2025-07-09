@@ -16,7 +16,7 @@ namespace EspecialidadesTest.CaminoNoFeliz.Eliminar
             _controller = new EspecialidadesController(_serviceMock.Object);
         }
         [Test]
-        public async Task EliminarEspecialidad_WithNonexistentId_ShouldThrowNotFound()
+        public async Task EliminarEspecialidad_ConIdInexistente_DeberiaLanzarNotFound()
         {
             // Arrange
             var idInvalido = 9999;

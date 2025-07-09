@@ -19,12 +19,12 @@ namespace EspecialidadesTest.CaminoFeliz.Actualizar
         }
 
         [Test]
-        public async Task ActualizarEspecialidad_WhenConflict_ShouldReturn409()
+        public async Task ActualizarEspecialidad_ConRowVersionNula_DeberiaDevolver400()
         {
             // Arrange
             var updateRequest = new EspecialidadUpdateRequest
             {
-                descripcion = "Cirugía",
+                descripcion = "03",
                 RowVersion = "AAAAAAAACcM="
             };
 

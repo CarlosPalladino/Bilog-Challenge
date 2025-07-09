@@ -1,8 +1,6 @@
-﻿using Application.Dto.Request;
-using Application.Dto.Response;
+﻿using Application.Dto.Response;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using WebApi.Controllers;
 
@@ -22,12 +20,15 @@ public class EspecialidadesControllerTests
     }
 
     [Test]
-    public async Task ListaEspecialidades_ShouldReturnOk_WithList()
+    public async Task ListaEspecialidades_DeberiaDevolverOk_ConLista()
     {
         // Arrange
         var especialidades = new List<EspecialidadResponse>
         {
-            new() { cod_especialidad = "OD01", descripcion = "Odontología" }
+            new() {
+                cod_especialidad = "03",
+                descripcion = "03"
+            }
         };
 
         _serviceMock.Setup(s => s.ListaEspecialidades()).ReturnsAsync(especialidades);
@@ -42,6 +43,6 @@ public class EspecialidadesControllerTests
         Assert.That(okResult.Value, Is.EqualTo(especialidades));
     }
 
-  
-  
+
+
 }

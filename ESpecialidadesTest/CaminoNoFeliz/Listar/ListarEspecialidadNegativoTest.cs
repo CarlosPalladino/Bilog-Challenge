@@ -15,7 +15,7 @@ namespace EspecialidadesTest.CaminoNoFeliz.Listar
             _serviceMock = new Mock<IEspecialidadInterface>();
             _controller = new EspecialidadesController(_serviceMock.Object);
         }
-        public void ListaEspecialidades_ShouldThrowException_WhenServiceFails()
+        public async Task ListaEspecialidades_DeberiaLanzarExcepcion_CuandoFallaElServicio()
         {
             // Arrange
             _serviceMock
@@ -27,4 +27,4 @@ namespace EspecialidadesTest.CaminoNoFeliz.Listar
             Assert.That(ex!.Message, Does.Contain("Error inesperado"));
         }
     }
-}
+}   

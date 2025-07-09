@@ -18,12 +18,12 @@ namespace EspecialidadesTest.CaminoNoFeliz.Actualizar
             _controller = new EspecialidadesController(_serviceMock.Object);
         }
         [Test]
-        public async Task ActualizarEspecialidad_WithNullRowVersion_ShouldReturn400()
+        public async Task ActualizarEspecialidad_CuandoHayConflicto_DeberiaDevolver409()
         {
             // Arrange
             var updateRequest = new EspecialidadUpdateRequest
             {
-                descripcion = "Nueva desc.",
+                descripcion = "03",
                 RowVersion = null!
             };
 
