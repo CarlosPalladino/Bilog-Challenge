@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-public class EspecialidadMiddlewares
+﻿public class EspecialidadMiddlewares
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<EspecialidadMiddlewares> _logger;
@@ -19,31 +17,22 @@ public class EspecialidadMiddlewares
         {
             await _next(context);
         }
+        catch (UnauthorizedAccessException)
+        {
+            context.Response.StatusCode = 401;
+            await context.Response.WriteAsJsonAsync(new { error = "Unanthorized" });
+        }
+        catch (KeyNotFoundException ex)
+        {
+            context.Response.StatusCode = StatusCodes.Status404NotFound;
+            await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+        }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
-
-            context.Response.ContentType = "application/json";
-
-            var statusCode = ex switch
-            {
-                DbUpdateConcurrencyException => StatusCodes.Status409Conflict,
-                KeyNotFoundException => StatusCodes.Status404NotFound,
-
-                ArgumentException => StatusCodes.Status400BadRequest,
-                _ => StatusCodes.Status500InternalServerError
-            };
-            context.Response.StatusCode = statusCode;
-
-            var respuestaErrada = new
-            {
-                status = statusCode,
-                message = ex.Message
-            };
-
-            await context.Response.WriteAsJsonAsync(respuestaErrada);
+            _logger.LogError(ex, "Unexpected Error");
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            await context.Response.WriteAsJsonAsync(new { error = "Internal Server Error" });
         }
     }
 }
-
 
