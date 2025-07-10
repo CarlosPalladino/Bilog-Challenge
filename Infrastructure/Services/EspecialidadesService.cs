@@ -39,12 +39,12 @@ namespace Infrastructure.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task EliminarEspecialida(int id)
+        public async Task EliminarEspecialida(int id_especialidad)
         {
             var especialidadEncontrada = await _context.Especialidades
-                                                 .FindAsync(id);
+                                                 .FindAsync(id_especialidad);
             if (especialidadEncontrada is null)
-                throw new KeyNotFoundException($"no se encontró la especialidad: {id}");
+                throw new KeyNotFoundException($"no se encontró la especialidad: {id_especialidad}");
             _context.Remove(especialidadEncontrada);
             _context.SaveChanges();
         }

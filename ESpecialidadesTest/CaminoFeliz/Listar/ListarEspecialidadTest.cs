@@ -27,7 +27,8 @@ public class EspecialidadesControllerTests
         {
             new() {
                 cod_especialidad = "03",
-                descripcion = "03"
+                descripcion = "03",
+                rowVersion = Convert.FromBase64String("AAAAAAAo9GE=")
             }
         };
 
